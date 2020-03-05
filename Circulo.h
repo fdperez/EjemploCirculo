@@ -41,7 +41,7 @@ private:
     int _y;
     int _tam;
     float _radio;
-    Punto2D *_lpuntos;
+    Punto2D *_lpuntos; //Ojo con los punteros en el constructor copia y operador asignación
 };
 
 #endif /* CIRCULO_H */
