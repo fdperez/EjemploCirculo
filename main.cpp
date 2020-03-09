@@ -19,6 +19,7 @@
 using namespace std;
 
 //Los pasos en funciones se deben hacer con punteros o referencias
+
 void muestraDatos(Circulo &c1) {
     cout << c1.get_X() << " - " << c1.get_Y() << " - " << c1.get_Radio() << " - " << c1.getArea() << endl;
     for (int i = 0; i < c1.get_Tam(); i++) {
@@ -34,7 +35,7 @@ int main(int argc, char** argv) {
     } catch (TamanoP &ex) {
         cout << ex.getError();
     }
-    
+
     /*Circulo c2;//Constructor por defecto Circulo c2=c1 haría una llamada al constructor copia
     c2 = c1; //LLamada al operador asignación
 
@@ -46,31 +47,40 @@ int main(int argc, char** argv) {
 
     if (c3)
         delete c3;
-    */
+     */
 
-    Circulo* ac[5]; //Array estático con 5 posiciones de punteros a círculos
-    for(int i=0; i<5; i++){
-        ac[i]=nullptr;
+    Circulo * ac[5]; //Array estático con 5 posiciones de punteros a círculos
+    for (int i = 0; i < 5; i++) {
+        ac[i] = nullptr;
     }
-    ac[1]=new Circulo(); //Inicializo en la posición 1 con un puntero a un círculo.
-    for(int i=0; i<5; i++){
-        if(ac[i]!=nullptr){
-            cout<<i<<" - "<<ac[i]->get_Radio()<<endl; //En el constructor por defecto es 0
+    ac[1] = new Circulo(); //Inicializo en la posición 1 con un puntero a un círculo.
+    for (int i = 0; i < 5; i++) {
+        if (ac[i] != nullptr) {
+            cout << i << " - " << ac[i]->get_Radio() << endl; //En el constructor por defecto es 0
         }
     }
-    
-    Circulo **lc=new Circulo*[5]; //Array dinámico de punteros a Círculos(Podemos modificar la memoria reservada)
-    for(int i=0; i<5; i++){
-        lc[i]=nullptr;
+
+    for (int i = 0; i < 5; i++) {
+        delete ac[i];
     }
-    lc[2]=new Circulo(); //Inicializo en la posición 2 con un puntero a un círculo. Si en vez 
-                        //de iniciarlizarlo con un círculo, lo hago con otro Array Dinámico
-                        //el resultado sería una matriz (Un array de arrays).
-    for(int i=0; i<5; i++){
-        if(lc[i]!=nullptr){
-            cout<<i<<" - "<<lc[i]->get_Radio()<<endl;
+
+    Circulo **lc = new Circulo*[5]; //Array dinámico de punteros a Círculos(Podemos modificar la memoria reservada)
+    for (int i = 0; i < 5; i++) {
+        lc[i] = nullptr;
+    }
+    lc[2] = new Circulo(); //Inicializo en la posición 2 con un puntero a un círculo. Si en vez 
+    //de iniciarlizarlo con un círculo, lo hago con otro Array Dinámico
+    //el resultado sería una matriz (Un array de arrays).
+    for (int i = 0; i < 5; i++) {
+        if (lc[i] != nullptr) {
+            cout << i << " - " << lc[i]->get_Radio() << endl;
         }
     }
+
+    for(int i=0; i<5; i++){
+        delete lc[i];
+    }
+    delete []lc;
     
     return 0;
 }
